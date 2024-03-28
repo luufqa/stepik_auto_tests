@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 @pytest.fixture(scope="function")
 def browser():
     options = webdriver.ChromeOptions()
-    options.add_argument("--lang=en")  # Установка языка интерфейса на английский
+    options.add_argument("--lang=ru")  # Установка языка интерфейса на английский
 
     print("\nstart browser for test..")
     browser = webdriver.Chrome(options=options)
