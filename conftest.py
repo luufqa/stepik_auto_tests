@@ -1,13 +1,16 @@
-import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+import pytest
 
+
+def pytest_addoption(parser):
+    parser.addoption('--language', action='store', default='ru',
+                     help="Choose language for browser")
 
 @pytest.fixture(scope="function")
-def browser():
+def browser(request):
+    language = request.config.getoption("language")
     options = webdriver.ChromeOptions()
-    options.add_argument("--lang=ru")  # Установка языка интерфейса на английский
-
+    options.add_experimental_option('prefs', {'intl.accept_languages': language})
     print("\nstart browser for test..")
     browser = webdriver.Chrome(options=options)
     yield browser
